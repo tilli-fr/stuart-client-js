@@ -66,7 +66,7 @@ class HttpClient {
         if (params) options.qs = params
 
         Request.get(options, (err, res) => resolve(
-          new ApiResponse(res.statusCode, JSON.parse(res.body))))
+          new ApiResponse(res.statusCode, res.body ? JSON.parse(res.body) : {})))
       }).catch(error => { reject(error) })
     })
   };
@@ -81,7 +81,7 @@ class HttpClient {
         }
 
         Request.post(options, (err, res) => resolve(
-          new ApiResponse(res.statusCode, JSON.parse(res.body))))
+          new ApiResponse(res.statusCode, res.body ? JSON.parse(res.body) : {})))
       }).catch(error => { reject(error) })
     })
   };
